@@ -1,0 +1,49 @@
+nohup: ignoring input
+Device: cuda
+Loading data...
+Classes: 8, Labels: ['dataTheft', 'diskWipe', 'dos', 'mining', 'mirai', 'normal', 'ransomware', 'rootkit']
+
+--- Running ORBA ---
+    Ep[  1/80]  1.7s | loss=1.1344 | lr=0.002500
+    Ep[ 10/80]  0.6s | loss=0.5570 | lr=0.009981
+    Ep[ 20/80]  0.6s | loss=0.3198 | lr=0.009337
+    Ep[ 30/80]  0.7s | loss=0.2314 | lr=0.007889
+    Ep[ 40/80]  0.7s | loss=0.1781 | lr=0.005910
+    Ep[ 50/80]  0.7s | loss=0.1017 | lr=0.003769
+    Ep[ 60/80]  0.7s | loss=0.0735 | lr=0.001868
+    Ep[ 70/80]  0.6s | loss=0.0604 | lr=0.000564
+    Ep[ 80/80]  0.7s | loss=0.0606 | lr=0.000100
+              precision    recall  f1-score   support
+
+   dataTheft     0.9778    0.9565    0.9670        46
+    diskWipe     0.9821    1.0000    0.9910        55
+         dos     0.9796    1.0000    0.9897        96
+      mining     0.9792    1.0000    0.9895        47
+       mirai     1.0000    1.0000    1.0000        14
+      normal     0.8889    0.6667    0.7619        12
+  ransomware     1.0000    0.9808    0.9903        52
+     rootkit     0.9825    1.0000    0.9912        56
+
+    accuracy                         0.9815       378
+   macro avg     0.9738    0.9505    0.9601       378
+weighted avg     0.9808    0.9815    0.9805       378
+
+  [Saved] Training metrics (80 epochs) -> ./Fig_data/training_metrics.csv
+  [Saved] Model checkpoint -> ./Fig_data/full_model.pt
+  [Saved] Parameters=0.921385 M  Inference/sample=34.143173 us -> ./Fig_data/model_performance.csv
+
+---------------------------------------------------------------------------------------------------------
+| Experiment / Architecture              | F1 (Test)          | Drop-Host F1       | Drop-Net F1        |
+---------------------------------------------------------------------------------------------------------
+| ORBA-Net                               | 0.9805             | 0.1368             | 0.8550             |
+---------------------------------------------------------------------------------------------------------
+
+Per-class F1 Scores:
+| Experiment / Architecture              | dataTheft   | diskWipe    | dos         | mining      | mirai       | normal      | ransomware  | rootkit     |
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+| ORBA-Net                               | 0.9670      | 0.9910      | 0.9897      | 0.9895      | 1.0000      | 0.7619      | 0.9903      | 0.9912      |
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Note: 'Drop-Host' and 'Drop-Net' indicate results obtained by masking the Host and network modalities respectively, i.e., using only network-layer data and only host-layer data.
+
+Results saved to ./Fig/experiment_results.pkl

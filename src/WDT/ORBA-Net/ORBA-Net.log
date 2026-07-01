@@ -4,30 +4,18 @@ Loading data...
 Classes: 6, Labels: ['DoS', 'MITM', 'anomaly', 'normal', 'physical fault', 'scan']
 
 --- Running ORBA-Net (seed=1) ---
-    Ep[ 20/150]  1.6s | loss=0.2035 | lr=0.000997
-    Ep[ 40/150]  1.3s | loss=0.0843 | lr=0.000919
+    Ep[ 20/150]  1.5s | loss=0.2035 | lr=0.000997
+    Ep[ 40/150]  1.4s | loss=0.0843 | lr=0.000919
     Ep[ 60/150]  1.6s | loss=0.0686 | lr=0.000752
-    Ep[ 80/150]  1.6s | loss=0.0557 | lr=0.000534
-    Ep[100/150]  1.5s | loss=0.0430 | lr=0.000309
-    Ep[120/150]  1.6s | loss=0.0362 | lr=0.000126
-    Ep[140/150]  1.6s | loss=0.0329 | lr=0.000023
-    Ep[150/150]  1.6s | loss=0.0335 | lr=0.000010
-                precision    recall  f1-score   support
-
-           DoS     1.0000    1.0000    1.0000        95
-          MITM     0.9867    0.9769    0.9818       303
-       anomaly     0.9000    0.8182    0.8571        11
-        normal     0.9914    0.9895    0.9905      1625
-physical fault     0.9431    0.9660    0.9544       206
-          scan     0.5000    0.7500    0.6000         4
-
-      accuracy                         0.9848      2244
-     macro avg     0.8869    0.9168    0.8973      2244
-  weighted avg     0.9853    0.9848    0.9850      2244
-
+    Ep[ 80/150]  1.8s | loss=0.0557 | lr=0.000534
+    Ep[100/150]  1.6s | loss=0.0430 | lr=0.000309
+    Ep[120/150]  1.5s | loss=0.0362 | lr=0.000126
+    Ep[140/150]  1.5s | loss=0.0329 | lr=0.000023
+    Ep[150/150]  1.7s | loss=0.0335 | lr=0.000010
+precision: 0.9853  recall: 0.9848  f1-score: 0.9850
   [Saved] Training metrics (150 epochs) -> ./Fig_data/training_metrics.csv
   [Saved] Model checkpoint -> ./Fig_data/full_model.pt
-  [Saved] Parameters=0.350599 M  Inference/sample=21.655665 us -> ./Fig_data/model_performance.csv
+  [Saved] Parameters=0.350599 M  Inference/sample=20.473621 us -> ./Fig_data/model_performance.csv
 
 ---------------------------------------------------------------------------------------------------------
 | Experiment / Architecture              | F1 (Test)          | Drop-Phy F1        | Drop-Net F1        |

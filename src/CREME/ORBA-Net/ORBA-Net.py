@@ -460,13 +460,9 @@ def train_and_evaluate(data, seed, device, batch_size=32):
         else:
             _avg_cls = _avg_total
         epoch_records.append({
-            'epoch':        epoch + 1,
-            'L_total':      round(_avg_total, 8),
-            'L_cls':        round(_avg_cls,   8),
-            'L_mse':        round(_avg_mse,   8),
-            'L_ortho':      round(_avg_ortho, 8),
-            'val_weighted': round(float(vm),  8),
-            'lr':           round(scheduler.get_last_lr()[0], 8),
+            'epoch':   epoch + 1,
+            'L_total': round(_avg_total, 8),
+            'lr':      round(scheduler.get_last_lr()[0], 8),
         })
 
         if vm > best_val:
@@ -487,9 +483,11 @@ def train_and_evaluate(data, seed, device, batch_size=32):
     d_phy = evaluate(eval_model, test_loader, device, num_classes, well_idx, mask='phy')
     d_net = evaluate(eval_model, test_loader, device, num_classes, well_idx, mask='net')
 
-    print(classification_report(
-        clean['_labels'], clean['_preds'],
-        target_names=class_names, zero_division=0, digits=4))
+    from sklearn.metrics import precision_score, recall_score, f1_score
+    p = precision_score(clean['_labels'], clean['_preds'], average='weighted', zero_division=0)
+    r = recall_score(clean['_labels'], clean['_preds'], average='weighted', zero_division=0)
+    f = f1_score(clean['_labels'], clean['_preds'], average='weighted', zero_division=0)
+    print(f"precision: {p:.4f}  recall: {r:.4f}  f1-score: {f:.4f}")
 
     _fig_dir = './Fig_data'
     os.makedirs(_fig_dir, exist_ok=True)
